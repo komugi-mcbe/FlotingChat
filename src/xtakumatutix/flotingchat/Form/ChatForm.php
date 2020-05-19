@@ -12,7 +12,7 @@ class ChatForm implements Form
         if ($data === null) {
             return;
         }
-            Floting::particle($player,$data[0]);
+            Floting::particle($player,$data);
             return;
         }
 
@@ -23,7 +23,7 @@ class ChatForm implements Form
             'title' => '浮き文字',
             'content' => [
                 [
-                    'type' => 'imput',
+                    'type' => 'input',
                     'text' => 'aaaaa'
                 ]
             ]

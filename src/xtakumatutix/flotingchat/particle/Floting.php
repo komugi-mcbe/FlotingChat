@@ -12,7 +12,7 @@ use pocketmine\Server;
 
 class Floting
 {
-    public static function particle(Player $player String $data[0]): void
+    public static function particle(Player $player String $data)
     {
         $basePos = $player->asVector3();
         $basePos = $basePos->add(0, 1, 0);//高さ上げ
