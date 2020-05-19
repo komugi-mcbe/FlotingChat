@@ -9,10 +9,9 @@ use pocketmine\plugin\Plugin;
 use pocketmine\scheduler\ClosureTask;
 use pocketmine\Server;
 
-
 class Floting
 {
-    public static function particle(Player $player String $data)
+    public static function particle(Player $player, $data)
     {
         $basePos = $player->asVector3();
         $basePos = $basePos->add(0, 1, 0);//高さ上げ
@@ -31,7 +30,8 @@ class Floting
                 break;
             }
         $level = $player->getLevel();
-        $particle = new FloatingTextParticle($pos, "{$data[0]}", "§l§eGood!!");
+        $name = $player->getName();
+        $particle = new FloatingTextParticle($pos, "§7by.{$name}", "{$data[0]}");
         $level->addParticle($particle);
 
         $task = new ClosureTask(function (int $currentTick) use ($particle, $level): void {
@@ -40,6 +40,6 @@ class Floting
         });
         $plugin = Server::getInstance()->getPluginManager()->getPlugin("reaction");
         /** @var Plugin $plugin */
-        $plugin->getScheduler()->scheduleDelayedTask($task, 20 * 3);//5秒後に実行
+        $plugin->getScheduler()->scheduleDelayedTask($task, 20 * $data[1]);//時間指定×20(1秒)
     }
 }

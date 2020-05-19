@@ -12,9 +12,19 @@ class ChatForm implements Form
         if ($data === null) {
             return;
         }
-            Floting::particle($player,$data);
-            return;
+        $length = mb_strlen($data[0]);
+        if ($length == 0){
+            $player->sendMessage("§c >> §f言葉を入力してください");
+            if($length < 11){
+                Floting::particle($player,$data);
+                return;
+                if($length > 12){
+                    $player->sendMessage("§c >> §f文字は11字以内でしてください。");
+                    return;
+                }
+            }
         }
+    }
 
     public function jsonSerialize()
     {
@@ -24,7 +34,13 @@ class ChatForm implements Form
             'content' => [
                 [
                     'type' => 'input',
-                    'text' => 'aaaaa'
+                    'text' => '浮き文字で入力したい言葉をうってください。'
+                ],
+                [
+                    'type' => 'step_slider',
+                    'text' => '何秒表示しますか？',
+                    'steps' => ['5', '10', '15', '20', '25', '30'],
+                    'default' => 0
                 ]
             ]
         ];
