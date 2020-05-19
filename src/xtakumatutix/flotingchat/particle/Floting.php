@@ -13,6 +13,33 @@ class Floting
 {
     public static function particle(Player $player, $data)
     {
+        $count = 0;
+        switch ($data[1]){
+            case 0:
+            $count + 5;
+            break;
+
+            case 1:
+            $count + 10;
+            break;
+
+            case 2:
+            $count + 15;
+            break;
+
+            case 3:
+            $count + 20;
+            break;
+
+            case 4:
+            $count + 25;
+            break;
+
+            case 5:
+            $count + 30;
+            break;
+        }
+
         $basePos = $player->asVector3();
         $basePos = $basePos->add(0, 1, 0);//高さ上げ
         switch ($player->getDirection()) {
@@ -40,6 +67,6 @@ class Floting
         });
         $plugin = Server::getInstance()->getPluginManager()->getPlugin("reaction");
         /** @var Plugin $plugin */
-        $plugin->getScheduler()->scheduleDelayedTask($task, 20 * $data[1]);//時間指定×20(1秒)
+        $plugin->getScheduler()->scheduleDelayedTask($task, 20 * $count);//時間指定×20(1秒)
     }
 }

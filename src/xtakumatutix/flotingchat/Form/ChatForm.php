@@ -12,17 +12,19 @@ class ChatForm implements Form
         if ($data === null) {
             return;
         }
+
+        var_dump($data[1]);
         $length = mb_strlen($data[0]);
         if ($length == 0){
             $player->sendMessage("§c >> §f言葉を入力してください");
-            if($length < 11){
-                Floting::particle($player,$data);
-                return;
-                if($length > 12){
-                    $player->sendMessage("§c >> §f文字は11字以内でしてください。");
-                    return;
-                }
-            }
+        }
+        if($length < 11){
+            Floting::particle($player,$data);
+            return;
+        }
+        if($length > 12){
+            $player->sendMessage("§c >> §f文字は11字以内でしてください。");
+            return;
         }
     }
 
