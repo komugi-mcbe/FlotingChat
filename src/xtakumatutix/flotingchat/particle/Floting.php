@@ -40,6 +40,6 @@ class Floting
         });
         $plugin = Server::getInstance()->getPluginManager()->getPlugin("reaction");
         /** @var Plugin $plugin */
-        $plugin->getScheduler()->scheduleDelayedTask($task, 20 * $data[1]);//時間指定×20(1秒)
+        $plugin->getScheduler()->scheduleDelayedTask($task, 20 * ($data[1] + 1) * 5);//時間指定×20(1秒)×5(スライドバー)※0からだから+1する
     }
 }
